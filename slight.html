@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slideshow Surprise</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    #musicControl {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        background: #ff4081;
+        color: white;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 10px;
+        z-index: 10;
+    }
+
+    .slideshow-container {
+        position: relative;
+        width: 80%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .slide {
+        position: absolute;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    .slide img {
+        width: 50%;
+        border-radius: 15px;
+    }
+
+    .message {
+        font-size: 32px;
+        margin-top: 20px;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    /* Animation classes */
+    .from-top { transform: translateY(-100px); animation: slideInTop 1s forwards; }
+    .from-bottom { transform: translateY(100px); animation: slideInBottom 1s forwards; }
+    .from-left { transform: translateX(-100px); animation: slideInLeft 1s forwards; }
+    .from-right { transform: translateX(100px); animation: slideInRight 1s forwards; }
+
+    @keyframes slideInTop { to { transform: translateY(0); } }
+    @keyframes slideInBottom { to { transform: translateY(0); } }
+    @keyframes slideInLeft { to { transform: translateX(0); } }
+    @keyframes slideInRight { to { transform: translateX(0); } }
+
+    .final-message {
+        font-size: 40px;
+        color: #ff4081;
+        display: none;
+        animation: popUp 2s forwards;
+    }
+
+    @keyframes popUp {
+        0% { transform: scale(0); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+<button id="musicControl">Click to Start Music & Slideshow</button>
+<div class="slideshow-container">
+    <div class="slide">
+        <img id="slideImage" src="" alt="Slide Image">
+        <div class="message" id="slideMessage"></div>
+    </div>
+</div>
+<div class="final-message" id="finalMessage">💖 Happy Anniversary, Dehaa! 💖</div>
+
+<audio id="bgMusic" src="./music.mp3"></audio>
+
+<script>
+const messages = [
+    "You make my world beautiful ❤️",
+    "Every moment with you is magical ✨",
+    "You are my sunshine ☀️",
+    "Forever together 💍",
+    "Love beyond words 💌",
+    "Your smile is everything 😊",
+    "Happiness is you ❤️",
+    "Dreaming of us forever 🌙",
+    "You are my destiny 💞",
+    "Every heartbeat says your name 💓",
+    "My love grows every day 🌸",
+    "You complete me 💕",
+    "Life is better with you 💗",
+    "Happy Anniversary, My Love! 💖"
+];
+
+const animations = ["from-top", "from-bottom", "from-left", "from-right"];
+const slideImage = document.getElementById("slideImage");
+const slideMessage = document.getElementById("slideMessage");
+const finalMessage = document.getElementById("finalMessage");
+const musicBtn = document.getElementById("musicControl");
+const bgMusic = document.getElementById("bgMusic");
+
+let currentSlide = 0;
+
+musicBtn.addEventListener("click", () => {
+    bgMusic.play();
+    musicBtn.style.display = "none";
+    startSlideshow();
+});
+
+function startSlideshow() {
+    showSlide(currentSlide);
+}
+
+function showSlide(index) {
+    if (index < messages.length) {
+        slideImage.src = `./img/im${index + 1}.jpeg`;
+        slideMessage.textContent = messages[index];
+
+        const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+        slideImage.className = randomAnim;
+        slideMessage.className = `message ${randomAnim}`;
+
+        document.querySelector(".slide").style.opacity = 1;
+        slideMessage.style.opacity = 1;
+
+        setTimeout(() => {
+            document.querySelector(".slide").style.opacity = 0;
+            slideMessage.style.opacity = 0;
+            currentSlide++;
+            setTimeout(() => showSlide(currentSlide), 500);
+        }, 3000); // Each slide visible for 3 sec
+    } else {
+        document.querySelector(".slideshow-container").style.display = "none";
+        finalMessage.style.display = "block";
+    }
+}
+</script>
+</body>
+</html>
