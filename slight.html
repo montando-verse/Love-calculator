@@ -7,11 +7,10 @@
 <style>
   body {
     margin: 0;
-    margin-bottom : 30px;
-    padding: 0;
+    padding-bottom: 40px;
     font-family: Arial, sans-serif;
-    background: #111;
-    color: #fff;
+    background: #eddff5;
+    color: #1d1f30;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +22,7 @@
   /* Music Button */
   #musicControl {
     position: absolute;
-    top: 20px;
+    top: 40vh;
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
@@ -41,6 +40,7 @@
     position: relative;
     width: 90%;
     height: auto;
+    padding-bottom:18px ;
     max-height: 85vh;
     display: flex;
     justify-content: center;
@@ -64,8 +64,10 @@
     max-width: 90%;
     max-height: 60vh;
     width: auto;
+    box-shadow: rgba(179, 1, 188, 0.231) 0px 8px 32px 0px;
+    border: solid 20px rgb(254, 248, 255);
     height: auto;
-    border-radius: 12px;
+    border-radius: 5px;
     object-fit: contain;
     margin-bottom: 15px;
   }
@@ -92,7 +94,7 @@
 
   /* Final message */
   .final-message {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
     color: #fa7ca6;
     text-align: center;
     display: none;
@@ -122,12 +124,29 @@
 
 <!-- Final message -->
 <div class="final-message" id="finalMessage">
-  💖 Happy Anniversary, My Love! 💖 <br>
+  💖 Happy Anniversary, My Love! 💖
 </div>
 
 <!-- Background music -->
 <audio id="bgMusic" src="./music.mp3"></audio>
 
+  <div class="footer" style="
+  background-color: #1d1f30;
+  color: #eddff5;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  width: 100vw;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 42px;
+  position: relative;
+  top : 55vh;
+  ">
+    <h3>☕︎ By <a href="ByMeAsamosaa.html" style="color: aquamarine;
+    ">me</a> a Samosa</h3>
+</div>
+</div>
 <script>
 const messages = [
   "Remember the first day we met? ❤️",
@@ -203,7 +222,3 @@ function showSlide(index) {
 
 </body>
 </html>
-
-
-
-
