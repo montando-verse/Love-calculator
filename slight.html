@@ -199,7 +199,9 @@ musicBtn.addEventListener("click", () => {
   bgMusic.loop = true;
   bgMusic.play().catch(err => console.log("Music blocked:", err));
   musicBtn.style.display = "none";
-  startSlideshow();
+  setTimeout(() => {
+        startSlideshow();
+  }, 6000);
 });
 
 function startSlideshow() {
@@ -234,3 +236,4 @@ function showSlide(index) {
 
 </body>
 </html>
+
