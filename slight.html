@@ -81,6 +81,11 @@
     padding: 0 10px;
   }
 
+  .bright-bg {
+  background: #ffe6f2; /* soft bright pink */
+  transition: background 1s ease; /* smooth fade */
+}
+
   /* Animations */
   .from-top { transform: translateY(-50px); animation: slideInTop 1s forwards; }
   .from-bottom { transform: translateY(50px); animation: slideInBottom 1s forwards; }
@@ -95,7 +100,7 @@
   /* Final message */
   .final-message {
     font-size: 2.1rem;
-    color: #fa7ca6;
+    color: #f76898;
     text-align: center;
     display: none;
     padding: 0 10px;
@@ -153,12 +158,17 @@ const messages = [
   "Remember the first day we met? ❤️",
   "Every moment with you is magical ✨",
   "You are my sunshine ☀️",
+  "You are the reason I believe in love 🌹",
   "Forever together 💍",
+  "With you, every day feels special 🎉",
   "Love beyond words 💌",
   "Your smile is everything 😊",
   "Happiness is you ❤️",
   "Dreaming of us forever 🌙",
   "You are my destiny 💞",
+  "My heart beats only for you 💓",
+  "Our love story is my favorite chapter 📖",
+  "Forever isn’t long enough with you ⏳❤️",
   "Every heartbeat says your name 💓",
   "My love grows every day 🌸",
   "You complete me 💕",
@@ -180,7 +190,7 @@ let currentSlide = 0;
 const images = [];
 for (let i = 1; i <= messages.length; i++) {
   const img = new Image();
-  img.src = `./img/im${i}.jpeg`; // image path ./img/im1.jpeg ... ./img/im14.jpeg
+  img.src = `./img/im${i}.jpeg`;
   images.push(img);
 }
 
@@ -217,6 +227,7 @@ function showSlide(index) {
   } else {
     slideshow.style.display = "none";
     finalMessage.style.display = "block";
+    document.body.classList.add("bright-bg");
   }
 }
 </script>
